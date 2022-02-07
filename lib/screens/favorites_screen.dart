@@ -4,29 +4,31 @@ import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  final List<Meal> favoriteMeals;
+  final List<Meal> favoritedMeals;
 
-  FavoritesScreen(this.favoriteMeals);
+  FavoritesScreen(this.favoritedMeals);
 
   @override
   Widget build(BuildContext context) {
-    if (favoriteMeals.isEmpty) {
+    if (favoritedMeals.isEmpty) {
       return Center(
-        child: Text('You have no favorites yet - start adding some!'),
+        child: Text('You have no favorites yet - start ading some!'),
       );
     } else {
       return ListView.builder(
+        itemCount: favoritedMeals.length,
         itemBuilder: (ctx, index) {
+          final meal = favoritedMeals[index];
+
           return MealItem(
-            id: favoriteMeals[index].id,
-            title: favoriteMeals[index].title,
-            imageUrl: favoriteMeals[index].imageUrl,
-            duration: favoriteMeals[index].duration,
-            affordability: favoriteMeals[index].affordability,
-            complexity: favoriteMeals[index].complexity,
+            id: meal.id,
+            title: meal.title,
+            imageUrl: meal.imageUrl,
+            duration: meal.duration,
+            complexity: meal.complexity,
+            affordability: meal.affordability,
           );
         },
-        itemCount: favoriteMeals.length,
       );
     }
   }
